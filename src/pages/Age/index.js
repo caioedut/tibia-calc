@@ -67,9 +67,11 @@ function Age() {
         <Container title="Age Calculator">
             <Paper className={classes.paper}>
                 <form noValidate onSubmit={_handleSubmit}>
-                    <Grid container justify="center" spacing={1}>
+                    <Grid container justify="center" alignItems="flex-end" spacing={1}>
                         <Grid item>
                             <TextField
+                                type="search"
+                                inputMode="search"
                                 name="name"
                                 label="Char Nick"
                                 autoFocus
@@ -79,7 +81,6 @@ function Age() {
                                 onChange={_handleChange}
                             />
                         </Grid>
-                        <Grid item xs={12}/>
                         <Grid item>
                             <Button
                                 type="submit"

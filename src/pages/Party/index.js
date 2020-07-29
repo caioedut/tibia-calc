@@ -28,6 +28,7 @@ function Party() {
                     <Grid item>
                         <TextField
                             type="number"
+                            inputMode="numeric"
                             name="level"
                             label="Level"
                             autoFocus
