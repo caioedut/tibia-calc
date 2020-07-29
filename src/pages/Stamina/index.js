@@ -1,33 +1,86 @@
-import React, {useState} from 'react';
-import {
-    Box,
-    Button,
-    Grid,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableRow,
-    TextField,
-} from '@material-ui/core';
-import useStyles from '../../hooks/styles';
+import React, {useEffect, useState} from 'react';
+import {Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField} from '@material-ui/core';
 
+import useStyles from '../../hooks/styles';
 import Container from '../../components/Container';
 import UtilHelper from '../../helpers/UtilHelper';
 
 function Stamina() {
-    const [formError, setFormError] = useState(false);
     const [current, setCurrent] = useState('39:00');
     const [target, setTarget] = useState('42:00');
+    const [currentError, setCurrentError] = useState(false);
+    const [targetError, setTargetError] = useState(false);
     const [bonusStamina, setBonusStamina] = useState(null);
     const [normalStamina, setNormalStamina] = useState(null);
     const [minutesOffline, setMinutesOffline] = useState(null);
 
     const classes = useStyles();
 
+    useEffect(() => {
+        function calculate() {
+            setCurrentError(false);
+            setTargetError(false);
+
+            let hrCurrent = (current.split(':')[0] || '');
+            let mnCurrent = (current.split(':')[1] || '');
+
+            let hrTarget = (target.split(':')[0] || '');
+            let mnTarget = (target.split(':')[1] || '');
+
+            // Check current time filled
+            if (current.length !== 5) {
+                return setCurrentError(true);
+            }
+
+            // Check target time filled
+            if (target.length !== 5) {
+                return setTargetError(true);
+            }
+
+            // Check if current bigger than target
+            const nuCurrent = +`${hrCurrent}${mnCurrent}`;
+            const nuTarget = +`${hrTarget}${mnTarget}`;
+
+            if (nuCurrent >= nuTarget) {
+                return setTargetError(true);
+            }
+
+            let minBonus = 0;
+            let minNormal = 0;
+            let minOffline = 0;
+
+            for (let hr = +hrCurrent; hr <= +hrTarget; hr++) {
+                const mnIni = hr === +hrCurrent ? +mnCurrent : 0;
+                const mnEnd = hr === +hrTarget ? +mnTarget : 60;
+
+                for (let mn = mnIni; mn < mnEnd; mn++) {
+                    if (hr >= 39) {
+                        minBonus++;
+                    } else {
+                        minNormal++;
+                    }
+                }
+            }
+
+            // Bonus: 6min off = 1min stamina
+            const secBonus = minBonus * 60;
+            minOffline += (secBonus * 6) / 60;
+
+            // Normal: 6min off = 1min stamina
+            const secNormal = minNormal * 60;
+            minOffline += (secNormal * 3) / 60;
+
+            setBonusStamina(minBonus);
+            setNormalStamina(minNormal);
+            setMinutesOffline(minOffline);
+        }
+
+        calculate();
+    }, [current, target]);
+
     function _handleChange(e) {
-        const setTime = e.target.id === 'current' ? setCurrent : setTarget;
+        const attr = e.target.id;
+        const setTime = attr === 'current' ? setCurrent : setTarget;
 
         let value = UtilHelper.mask(e.target.value, '##:##');
 
@@ -45,108 +98,48 @@ function Stamina() {
 
         // Minute can't be lower 0 and higher 59
         if (typeof minute === 'string' && minute.length === 2) {
+            const maxMinute = hour >= 42 ? 0 : 59;
             minute = Math.max(minute, 0);
-            minute = Math.min(minute, 59);
+            minute = Math.min(minute, maxMinute);
             minute = `${minute}`.padStart(2, '0');
         }
 
         value = [hour, minute].filter(i => typeof i === 'string' && i.length > 0).join(':');
 
         setTime(value);
-        setFormError(false);
-        setMinutesOffline(null);
-    }
-
-    function _handleSubmit(e) {
-        e.preventDefault();
-
-        let hrCurrent = (current.split(':')[0] || '').padStart(2, '0');
-        let mnCurrent = (current.split(':')[1] || '').padStart(2, '0');
-
-        let hrTarget = (target.split(':')[0] || '').padStart(2, '0');
-        let mnTarget = (target.split(':')[1] || '').padStart(2, '0');
-
-        setCurrent(`${hrCurrent}:${mnCurrent}`);
-        setTarget(`${hrTarget}:${mnTarget}`);
-
-        // Check if current bigger than target
-        const nuCurrent = +`${hrCurrent}${mnCurrent}`;
-        const nuTarget = +`${hrTarget}${mnTarget}`;
-
-        if (nuCurrent >= nuTarget) {
-            setFormError(true);
-            return false;
-        }
-
-        let minBonus = 0;
-        let minNormal = 0;
-        let minOffline = 0;
-
-        for (let hr = +hrCurrent; hr <= +hrTarget; hr++) {
-            const mnIni = hr === +hrCurrent ? +mnCurrent : 0;
-            const mnEnd = hr === +hrTarget ? +mnTarget : 60;
-
-            for (let mn = mnIni; mn < mnEnd; mn++) {
-                if (hr >= 39) {
-                    minBonus++;
-                } else {
-                    minNormal++;
-                }
-            }
-        }
-
-        // Bonus: 6min off = 1min stamina
-        const secBonus = minBonus * 60;
-        minOffline += (secBonus * 6) / 60;
-
-        // Normal: 6min off = 1min stamina
-        const secNormal = minNormal * 60;
-        minOffline += (secNormal * 3) / 60;
-
-        setBonusStamina(minBonus);
-        setNormalStamina(minNormal);
-        setMinutesOffline(minOffline);
     }
 
     return (
         <Container title="Stamina Calculator">
             <Paper className={classes.paper}>
-                <form noValidate autoComplete="off" onSubmit={_handleSubmit}>
-                    <Grid container justify="center" spacing={1}>
-                        <Grid item>
-                            <TextField
-                                id="current"
-                                label="Current Stamina"
-                                autoFocus
-                                error={formError}
-                                value={current}
-                                InputLabelProps={{shrink: true}}
-                                style={{width: 120}}
-                                onChange={_handleChange}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <TextField
-                                id="target"
-                                label="Target Stamina"
-                                error={formError}
-                                value={target}
-                                InputLabelProps={{shrink: true}}
-                                style={{width: 120}}
-                                onChange={_handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}/>
-                        <Grid item>
-                            <Button type="submit" variant="contained" color="primary">
-                                Calculate
-                            </Button>
-                        </Grid>
+                <Grid container justify="center" spacing={1}>
+                    <Grid item>
+                        <TextField
+                            id="current"
+                            label="Current Stamina"
+                            autoFocus
+                            error={currentError}
+                            value={current}
+                            InputLabelProps={{shrink: true}}
+                            style={{width: 120}}
+                            onChange={_handleChange}
+                        />
                     </Grid>
-                </form>
+                    <Grid item>
+                        <TextField
+                            id="target"
+                            label="Target Stamina"
+                            error={targetError}
+                            value={target}
+                            InputLabelProps={{shrink: true}}
+                            style={{width: 120}}
+                            onChange={_handleChange}
+                        />
+                    </Grid>
+                </Grid>
             </Paper>
 
-            {(minutesOffline !== null) && (
+            {minutesOffline !== null && !currentError && !targetError && (
                 <Box component={Paper} className={classes.paper}>
                     <TableContainer>
                         <Table>
