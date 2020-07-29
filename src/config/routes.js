@@ -1,12 +1,12 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {HashRouter, Route, Switch} from 'react-router-dom';
 
 import Home from '../pages/Home';
 import Stamina from '../pages/Stamina';
 
 function Routes() {
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter basename={process.env.PUBLIC_URL}>
             <Switch>
                 <Route path="/stamina">
                     <Stamina/>
@@ -15,7 +15,7 @@ function Routes() {
                     <Home/>
                 </Route>
             </Switch>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
