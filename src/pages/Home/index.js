@@ -5,7 +5,6 @@ import {Grid, Typography} from '@material-ui/core';
 import Container from '../../components/Container';
 import menus from '../../config/menus';
 import UtilHelper from '../../helpers/UtilHelper';
-import useStyles from '../../hooks/styles';
 
 const screenStyles = {
     item: {
