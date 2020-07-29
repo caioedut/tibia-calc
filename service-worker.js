@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/tibia-calc/precache-manifest.d438af66cd25e03f4f7c44dc08c73b9d.js"
+  "/tibia-calc/precache-manifest.fab7f08ae197197058f9766fda4735ed.js"
 );
 
 self.addEventListener('message', (event) => {
