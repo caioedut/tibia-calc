@@ -20,9 +20,9 @@ function Party() {
     const classes = useStyles();
 
     function _handleChange(e) {
-        const level = e.target.value;
+        const level = Math.min(9999, e.target.value);
 
-        setLevel(level);
+        setLevel(`${level}`);
 
         // Min level: 2/3
         setMinLevel(Math.round(level / 3 * 2));
