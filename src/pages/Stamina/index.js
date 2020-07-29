@@ -75,23 +75,22 @@ function Stamina() {
             return false;
         }
 
-        // Check total stamina wasted
-        // Hour to minutes
-        let minTotalWasted = (hrTarget - hrCurrent) * 60;
-        // Sum minutes
-        minTotalWasted += mnTarget - mnCurrent;
-
         let minBonus = 0;
         let minNormal = 0;
         let minOffline = 0;
 
-        // Verificar bonus
-        if (hrTarget >= 39) {
-            minBonus = (hrTarget - Math.max(39, +hrCurrent)) * 60;
-            minBonus += mnTarget - mnCurrent;
-        }
+        for (let hr = +hrCurrent; hr <= +hrTarget; hr++) {
+            const mnIni = hr === +hrCurrent ? +mnCurrent : 0;
+            const mnEnd = hr === +hrTarget ? +mnTarget : 60;
 
-        minOffline = minTotalWasted - minBonus;
+            for (let mn = mnIni; mn < mnEnd; mn++) {
+                if (hr >= 39) {
+                    minBonus++;
+                } else {
+                    minNormal++;
+                }
+            }
+        }
 
         // Bonus: 6min off = 1min stamina
         const secBonus = minBonus * 60;
@@ -115,6 +114,7 @@ function Stamina() {
                             <TextField
                                 id="current"
                                 label="Current Stamina"
+                                autoFocus
                                 error={formError}
                                 value={current}
                                 InputLabelProps={{shrink: true}}
