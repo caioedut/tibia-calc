@@ -47,6 +47,7 @@ function Age() {
 
     function _handleChange(e) {
         setError(false);
+        setDatetime(null);
         setNick(e.target.value);
     }
 
