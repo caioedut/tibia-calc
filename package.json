@@ -2,7 +2,7 @@
   "name": "tibia-calc",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://caioedut.github.io/tibia-calc",
+  "homepage": "https://caioedut.github.io/tibia-calc",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
