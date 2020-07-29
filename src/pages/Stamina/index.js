@@ -82,7 +82,7 @@ function Stamina() {
         const attr = e.target.id;
         const setTime = attr === 'current' ? setCurrent : setTarget;
 
-        let value = UtilHelper.mask(e.target.value, '##:##');
+        let value = UtilHelper.mask(e.target.value.replace(/\D/g, ''), '##:##');
 
         const split = value.split(':');
 
