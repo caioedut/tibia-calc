@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, Grid, TextField, Typography, Paper} from '@material-ui/core';
+import {Box, Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 import Container from '../../components/Container';
@@ -140,33 +140,45 @@ function Stamina() {
                             </Button>
                         </Grid>
                         <Grid item xs={12}/>
-                        {(minutesOffline !== null) && (
-                            <Typography component="div">
-                                <Grid item>
-                                    <Grid container spacing={1}>
-                                        <Grid item>
-                                            Bonus stamina to regenerate:
-                                            <br/>
-                                            Normal stamina to regenerate:
-                                            <br/>
-                                            <b>Offline time needed:</b>
-                                        </Grid>
-                                        <Grid item>
-                                            <Box textAlign="right">
-                                                {UtilHelper.timeToString(bonusStamina)}
-                                                <br/>
-                                                {UtilHelper.timeToString(normalStamina)}
-                                                <br/>
-                                                <b>{UtilHelper.timeToString(minutesOffline)}</b>
-                                            </Box>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Typography>
-                        )}
                     </Grid>
                 </form>
             </Paper>
+
+            {(minutesOffline !== null) && (
+                <Box mt={2}>
+                    <TableContainer component={Paper}>
+                        <Table>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell>
+                                        Bonus stamina to regenerate:
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {UtilHelper.timeToString(bonusStamina)}
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>
+                                        Normal stamina to regenerate:
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        {UtilHelper.timeToString(normalStamina)}
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>
+                                        Offline time needed:
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <b>{UtilHelper.timeToString(minutesOffline)}</b>
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Box>
+            )}
+
         </Container>
     );
 }
