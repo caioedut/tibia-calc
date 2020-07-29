@@ -1,5 +1,9 @@
 const UtilHelper = {
 
+    requireImage(path) {
+        return require('../../public/img/' + path);
+    },
+
     unmask(str) {
         return (str + '').replace(/\W+/g, '');
     },

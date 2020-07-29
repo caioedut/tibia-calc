@@ -5,21 +5,12 @@ import {AppBar, IconButton, Menu, MenuItem, Toolbar, Typography} from '@material
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+import menus from '../../config/menus';
+
 function Header({title}) {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const route = useLocation().pathname;
-
-    const menus = [
-        {
-            url: '/stamina',
-            title: 'Stamina',
-        },
-        {
-            url: '/party',
-            title: 'Party Share',
-        },
-    ];
 
     function _handleOpenMenu(e) {
         setAnchorEl(e.currentTarget);
