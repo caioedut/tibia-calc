@@ -37,7 +37,7 @@ function Age() {
             }
 
             const tzDiff = created.timezone === 'CET' ? 1 : 2;
-            const date = new Date(created.date);
+            const date = new Date(created.date.substr(0, 19).replace(/-/g, '/'));
 
             date.setHours(date.getHours() - tzDiff);
 
