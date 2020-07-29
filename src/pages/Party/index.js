@@ -30,7 +30,7 @@ function Party() {
     }
 
     return (
-        <Container title="Party Sharing Level Calculator">
+        <Container title="Party Share Calculator">
             <Paper className={classes.paper}>
                 <Grid container justify="center" spacing={1}>
                     <Grid item>
