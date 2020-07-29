@@ -6,12 +6,12 @@ import Stamina from '../pages/Stamina';
 
 function Routes() {
     return (
-        <HashRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter basename="/">
             <Switch>
-                <Route path={`${process.env.PUBLIC_URL}/stamina`}>
+                <Route path="/stamina">
                     <Stamina/>
                 </Route>
-                <Route path={`${process.env.PUBLIC_URL}/`}>
+                <Route path="/">
                     <Home/>
                 </Route>
             </Switch>

@@ -20,8 +20,8 @@ function Header({title}) {
                     <IconButton
                         edge="start"
                         color="inherit"
+                        to="/"
                         component={Link}
-                        to={`${process.env.PUBLIC_URL}/`}
                     >
                         <ArrowBackIcon/>
                     </IconButton>
@@ -33,8 +33,8 @@ function Header({title}) {
                     <Button
                         key={menu.url}
                         variant="text"
+                        to={menu.url}
                         component={Link}
-                        to={`${process.env.PUBLIC_URL}${menu.url}`}
                     >
                         <span style={{color: '#ffffff'}}>{menu.title}</span>
                     </Button>
