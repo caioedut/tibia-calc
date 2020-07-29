@@ -11,7 +11,6 @@ import {
     TableRow,
     TextField,
 } from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
 import useStyles from '../../hooks/styles';
 
 import Container from '../../components/Container';
