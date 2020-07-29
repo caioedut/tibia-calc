@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c1052dac6b9e64beb5c28cd87b8032cf",
+    "revision": "76ca0413dc54ce080490e3f3e49bd915",
     "url": "/tibia-calc/index.html"
   },
   {
-    "revision": "3dcfa367abb435b934ef",
+    "revision": "6f09cf4ad44854157a63",
     "url": "/tibia-calc/static/css/main.06e35e80.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/tibia-calc/static/js/2.a9534e77.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3dcfa367abb435b934ef",
-    "url": "/tibia-calc/static/js/main.25082efd.chunk.js"
+    "revision": "6f09cf4ad44854157a63",
+    "url": "/tibia-calc/static/js/main.5518b4c7.chunk.js"
   },
   {
     "revision": "45c2808d1b36d52e780b",
