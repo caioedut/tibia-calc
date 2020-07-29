@@ -8,10 +8,10 @@ function Routes() {
     return (
         <HashRouter basename={process.env.PUBLIC_URL}>
             <Switch>
-                <Route path="/stamina">
+                <Route path={`${process.env.PUBLIC_URL}/stamina`}>
                     <Stamina/>
                 </Route>
-                <Route path="/">
+                <Route path={`${process.env.PUBLIC_URL}/`}>
                     <Home/>
                 </Route>
             </Switch>
