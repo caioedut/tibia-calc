@@ -11,7 +11,7 @@ const menus = [
     },
     {
         url: '/age',
-        title: 'Age',
+        title: 'Account Age',
         img: 'party.png',
     },
 ];

@@ -19,7 +19,7 @@ import UtilHelper from '../../helpers/UtilHelper';
 
 function Age() {
     const [datetime, setDatetime] = useState(null);
-    const [nick, setNick] = useState('Kogu Melo');
+    const [nick, setNick] = useState('');
     const [character, setCharacter] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -66,7 +66,7 @@ function Age() {
     return (
         <Container title="Age Calculator">
             <Paper className={classes.paper}>
-                <form noValidate autoComplete="off" onSubmit={_handleSubmit}>
+                <form noValidate onSubmit={_handleSubmit}>
                     <Grid container justify="center" spacing={1}>
                         <Grid item>
                             <TextField
