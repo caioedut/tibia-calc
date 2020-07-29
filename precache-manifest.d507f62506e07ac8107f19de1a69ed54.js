@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fcc933661d3d62664069696e1f46e014",
+    "revision": "0800275de4ac88abd44a40b4c33b7bcf",
     "url": "/tibia-calc/index.html"
   },
   {
