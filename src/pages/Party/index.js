@@ -1,16 +1,8 @@
 import React, {useState} from 'react';
-import {Box, Grid, Paper, TextField, Typography} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import {Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField} from '@material-ui/core';
+import useStyles from '../../hooks/styles';
 
 import Container from '../../components/Container';
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        padding: theme.spacing(2),
-        margin: 'auto',
-        maxWidth: 480,
-    },
-}));
 
 function Party() {
     const [level, setLevel] = useState('');
@@ -44,29 +36,34 @@ function Party() {
                             onChange={_handleChange}
                         />
                     </Grid>
-                    <Grid item xs={12}/>
-                    {!!level && (
-                        <Typography component="div">
-                            <Grid item>
-                                <Grid container spacing={1}>
-                                    <Grid item>
-                                        Min.:
-                                        <br/>
-                                        Max.:
-                                    </Grid>
-                                    <Grid item>
-                                        <Box textAlign="right">
-                                            <b>{minLevel}</b>
-                                            <br/>
-                                            <b>{maxLevel}</b>
-                                        </Box>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </Typography>
-                    )}
                 </Grid>
             </Paper>
+            {!!level && (
+                <Box component={Paper} className={classes.paper}>
+                    <TableContainer>
+                        <Table>
+                            <TableBody>
+                                <TableRow>
+                                    <TableCell>
+                                        Min.:
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <b>{minLevel}</b>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow>
+                                    <TableCell>
+                                        Max.:
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <b>{maxLevel}</b>
+                                    </TableCell>
+                                </TableRow>
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Box>
+            )}
         </Container>
     );
 }

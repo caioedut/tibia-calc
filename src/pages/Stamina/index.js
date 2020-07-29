@@ -1,17 +1,21 @@
 import React, {useState} from 'react';
-import {Box, Button, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField} from '@material-ui/core';
+import {
+    Box,
+    Button,
+    Grid,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableRow,
+    TextField,
+} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
+import useStyles from '../../hooks/styles';
 
 import Container from '../../components/Container';
 import UtilHelper from '../../helpers/UtilHelper';
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        padding: theme.spacing(2),
-        margin: 'auto',
-        maxWidth: 480,
-    },
-}));
 
 function Stamina() {
     const [formError, setFormError] = useState(false);
@@ -139,14 +143,13 @@ function Stamina() {
                                 Calculate
                             </Button>
                         </Grid>
-                        <Grid item xs={12}/>
                     </Grid>
                 </form>
             </Paper>
 
             {(minutesOffline !== null) && (
-                <Box mt={2}>
-                    <TableContainer component={Paper}>
+                <Box component={Paper} className={classes.paper}>
+                    <TableContainer>
                         <Table>
                             <TableBody>
                                 <TableRow>
