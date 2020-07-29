@@ -9,6 +9,10 @@ function Header({title}) {
             url: '/stamina',
             title: 'Stamina',
         },
+        {
+            url: '/party',
+            title: 'Party Share',
+        },
     ];
 
     const route = useLocation().pathname;
