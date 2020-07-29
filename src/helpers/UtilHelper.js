@@ -87,7 +87,22 @@ const UtilHelper = {
         return str;
     },
 
+    getDate(date) {
+        if (date instanceof Date) {
+            return date;
+        }
+
+        if (date.date) {
+            date = date.date;
+        }
+
+        // Fix sarafi
+        return new Date(`${date}`.substr(0, 19).replace(/-/g, '/'));
+    },
+
     dateAge(date) {
+        date = this.getDate(date);
+
         const starts = moment(date);
         const ends = moment();
 
