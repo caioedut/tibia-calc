@@ -17,7 +17,7 @@ function Header({title}) {
                     {title}
                 </Typography>
                 {menus.map((menu) => (
-                    <Button key={menu.url} component={Link} to={menu.url} variant="text">
+                    <Button key={menu.url} component={Link} to={`${process.env.PUBLIC_URL}${menu.url}`} variant="text">
                         <span style={{color: '#ffffff'}}>{menu.title}</span>
                     </Button>
                 ))}
