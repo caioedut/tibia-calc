@@ -8,10 +8,10 @@ function Routes() {
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Switch>
-                <Route path={`${process.env.PUBLIC_URL}/stamina`}>
+                <Route path={`/stamina`}>
                     <Stamina/>
                 </Route>
-                <Route path={`${process.env.PUBLIC_URL}/`}>
+                <Route path={`/`}>
                     <Home/>
                 </Route>
             </Switch>
