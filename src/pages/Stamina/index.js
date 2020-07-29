@@ -116,6 +116,7 @@ function Stamina() {
                     <Grid item>
                         <TextField
                             id="current"
+                            name="current"
                             label="Current Stamina"
                             autoFocus
                             error={currentError}
@@ -128,6 +129,7 @@ function Stamina() {
                     <Grid item>
                         <TextField
                             id="target"
+                            name="target"
                             label="Target Stamina"
                             error={targetError}
                             value={target}

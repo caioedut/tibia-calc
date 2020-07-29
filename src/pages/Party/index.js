@@ -12,7 +12,7 @@ function Party() {
     const classes = useStyles();
 
     function _handleChange(e) {
-        const level = Math.min(9999, e.target.value);
+        const level = Math.max(0, Math.min(9999, e.target.value));
 
         setLevel(`${level}`);
 
@@ -27,8 +27,8 @@ function Party() {
                 <Grid container justify="center" spacing={1}>
                     <Grid item>
                         <TextField
-                            id="current"
                             type="number"
+                            name="level"
                             label="Level"
                             autoFocus
                             value={level}

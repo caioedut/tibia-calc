@@ -70,7 +70,7 @@ function Age() {
                     <Grid container justify="center" spacing={1}>
                         <Grid item>
                             <TextField
-                                id="current"
+                                name="name"
                                 label="Char Nick"
                                 autoFocus
                                 error={error}
