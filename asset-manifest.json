@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/tibia-calc/static/css/main.06e35e80.chunk.css",
-    "main.js": "/tibia-calc/static/js/main.46f3e541.chunk.js",
-    "main.js.map": "/tibia-calc/static/js/main.46f3e541.chunk.js.map",
+    "main.js": "/tibia-calc/static/js/main.08004930.chunk.js",
+    "main.js.map": "/tibia-calc/static/js/main.08004930.chunk.js.map",
     "runtime-main.js": "/tibia-calc/static/js/runtime-main.ba91fda7.js",
     "runtime-main.js.map": "/tibia-calc/static/js/runtime-main.ba91fda7.js.map",
     "static/js/2.80cf3bce.chunk.js": "/tibia-calc/static/js/2.80cf3bce.chunk.js",
     "static/js/2.80cf3bce.chunk.js.map": "/tibia-calc/static/js/2.80cf3bce.chunk.js.map",
     "index.html": "/tibia-calc/index.html",
-    "precache-manifest.f338e72daa98df89f3b7d6c7c559fd11.js": "/tibia-calc/precache-manifest.f338e72daa98df89f3b7d6c7c559fd11.js",
+    "precache-manifest.5029b82bb0610288363e3827596098cc.js": "/tibia-calc/precache-manifest.5029b82bb0610288363e3827596098cc.js",
     "service-worker.js": "/tibia-calc/service-worker.js",
     "static/css/main.06e35e80.chunk.css.map": "/tibia-calc/static/css/main.06e35e80.chunk.css.map",
     "static/js/2.80cf3bce.chunk.js.LICENSE.txt": "/tibia-calc/static/js/2.80cf3bce.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.ba91fda7.js",
     "static/js/2.80cf3bce.chunk.js",
     "static/css/main.06e35e80.chunk.css",
-    "static/js/main.46f3e541.chunk.js"
+    "static/js/main.08004930.chunk.js"
   ]
 }
