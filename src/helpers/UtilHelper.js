@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const UtilHelper = {
 
     requireImage(path) {
@@ -85,6 +87,14 @@ const UtilHelper = {
         return str;
     },
 
+    dateAge(date) {
+        const starts = moment(date);
+        const ends = moment();
+
+        const duration = moment.duration(ends.diff(starts));
+
+        return duration.humanize();
+    },
 };
 
 export default UtilHelper;
