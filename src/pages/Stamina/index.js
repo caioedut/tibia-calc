@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableRow, TextField} from '@material-ui/core';
 
-import useStyles from '../../hooks/styles';
+import useStyles from '../../hooks/useStyles';
 import Container from '../../components/Container';
 import UtilHelper from '../../helpers/UtilHelper';
 

@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
+
 import {Accordion, AccordionDetails, AccordionSummary, Box, Chip, Grid, Tooltip, Typography} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import Container from '../../components/Container';
 import menus from '../../config/menus';
 import UtilHelper from '../../helpers/UtilHelper';
-import useStyles from '../../hooks/styles';
+import {useFetch} from '../../hooks/useFetch';
+import useStyles from '../../hooks/useStyles';
 import NewsService from '../../services/NewsService';
 
 const screenStyles = {
@@ -41,26 +43,34 @@ function Home() {
 
     const classes = useStyles();
 
-    useEffect(() => {
-        (async function () {
-            const response = await NewsService.list().catch(() => null);
-            const news = response?.data?.newslist?.data;
+    const {data} = useFetch('newstickers.json');
 
-            news && setNews(news.slice(0, 8));
-        })();
-    }, []);
+    useEffect(() => {
+        const items = data?.newslist?.data.slice(0, 8);
+
+        if (items?.length) {
+            (async function () {
+                setNews(items);
+                const promises = [];
+
+                for (const item of items) {
+                    if (!item.content) {
+                        promises.push(
+                            NewsService.get(item.id).then((response) => {
+                                item.content = response?.data?.news?.content || 'Failed to get more info.';
+                            }).catch(() => null),
+                        );
+                    }
+                }
+
+                await Promise.all(promises);
+                setNews(items);
+            })();
+        }
+    }, [data]);
 
     async function _handleToggleNews(item, isExpanded) {
         setExpanded(isExpanded ? item.id : false);
-
-        if (item.content || !isExpanded) {
-            return;
-        }
-
-        const response = await NewsService.get(item.id).catch(() => null);
-        item.content = response?.data?.news?.content || 'Failed to get more info.';
-
-        setNews([...news]);
     }
 
     return (
